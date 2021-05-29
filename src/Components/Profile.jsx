@@ -12,7 +12,7 @@ const Profile = (props) => {
   const history = useHistory();
   const [profile, setProfile] = useState();
   const [repos, setRepos] = useState();
-  const [pageCount, setPeageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(+pageNumber || 1);
 
   const { login } = useParams();
@@ -29,7 +29,7 @@ const Profile = (props) => {
             following,
             public_repos,
           } = res.data;
-          setPeageCount(Math.ceil(res.data.public_repos / 4));
+          setPageCount(Math.ceil(res.data.public_repos / 4));
           setProfile({
             avatar_url,
             login,
@@ -148,7 +148,7 @@ const Profile = (props) => {
 
                 <div className={styles.pagination__numbers}>
                   {[...Array(pageCount)].map((item, i, items) => {
-                    if (i > 2 && i != items.length - 1) {
+                    if (i > 2 && i !== items.length - 1) {
                       if (i === items.length - 2)
                         return (
                           <span key={i} className={styles.pagination__number}>
